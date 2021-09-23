@@ -3,13 +3,15 @@ package tasks
 import contributors.MockGithubService
 import contributors.expectedResults
 import contributors.testRequestData
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
 
 class Request4SuspendKtTest {
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun testSuspend() = runBlocking {
+    fun testSuspend() = runBlockingTest {
         val startTime = System.currentTimeMillis()
         val result = loadContributorsSuspend(MockGithubService, testRequestData)
         Assert.assertEquals("Wrong result for 'loadContributorsSuspend'", expectedResults.users, result)

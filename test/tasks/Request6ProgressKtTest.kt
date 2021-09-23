@@ -3,13 +3,16 @@ package tasks
 import contributors.MockGithubService
 import contributors.progressResults
 import contributors.testRequestData
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
 
 class Request6ProgressKtTest {
+    @ExperimentalCoroutinesApi
     @Test
-    fun testProgress() = runBlocking {
+    fun testProgress() = runBlockingTest {
         val startTime = System.currentTimeMillis()
         var index = 0
         loadContributorsProgress(MockGithubService, testRequestData) {
